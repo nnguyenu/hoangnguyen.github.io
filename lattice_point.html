@@ -66,7 +66,29 @@
 									Giải: Có \(y>0 \Rightarrow -3x+8>0 \Rightarrow x \leq 2\). 
 									Do đó, \((1,5)\) và \((2,2)\) là 2 điểm thỏa mãn. 
 								</p>
-								<h3>2. Ví dụ</h3>
+								<h2><li>Định lí Pick</li></h2>
+								<p>
+									Một đa giác không tự cắt chính nó và có các đỉnh là điểm nguyên được gọi là 
+									đa giác nguyên (Lattice polygon). Định lý Pick giúp ta tính diện tích đa giác 
+									này sử dụng số đỉnh nằm trên biên và số đỉnh nằm bên trong đa giác.  
+								</p>
+								<h3>2.1. Công thức</h3>
+								<p>
+									Đặt diện tích của đa giác nguyên là \(S(S>0)\), số điểm nguyên nằm trong đa giác 
+									(không tính nằm trên biên) là \(I\) và số điểm nguyên nằm trên biên là \(B\). 
+									Khi đó: $$S=I+\frac{B}{2}-1$$
+									Nói cách khác, nếu ta biết giá trị \(I, B\) thì ta có thể tính \(S\) trong \(O(1)\)
+									mà không cần biết tạo độ các đỉnh. Công thức này được phát hiện và chứng minh bới nhà
+									toán học Áo Georg Alexander Pick vào năm 1899.
+								</p>
+								<h2><li>Chứng minh</li></h2>
+								<p>Ta chứng minh từ các đa giác đơn giản đến phức tạp:</p>
+								<ul>
+									<li>Hình vuông đơn vị: xét hình vuông có cạnh bằng 1 đơn vị. Khi đó \(S=1,I=0,B=4\) (thỏa mãn công thức).</li>
+									<li>Hình chữ nhật có cạnh song song trục tọa độ. Đặt \(a\) và \(b\) là chiều dài cạnh hình chữ nhật.
+
+									</li>
+								</ul>
 							</ol>
 						</section>
 					</div>
