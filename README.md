@@ -12,7 +12,11 @@ Credits:
 
 	Icons:	Font Awesome (fontawesome.io)
 
+	Math formula: mathjax ( \(...\) for inline formula, $$...$$ for displayed formula)
+
 	Other:
 		jQuery (jquery.com)
 		Scrollex (github.com/ajlkn/jquery.scrollex)
 		Responsive Tools (github.com/ajlkn/responsive-tools)
+
+
