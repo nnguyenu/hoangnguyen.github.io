@@ -2591,7 +2591,12 @@ input, select, textarea {
 		}
 
 /* Image */
-
+	.center_image {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+	}
 	.image {
 		border: 0;
 		display: inline-block;
@@ -2621,7 +2626,7 @@ input, select, textarea {
 			margin: 0 0 2rem 2rem;
 			top: 0.75rem;
 		}
-
+		
 		.image.fit {
 			display: block;
 			margin: 2.5rem 0;
