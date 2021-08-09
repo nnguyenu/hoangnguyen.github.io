@@ -38,16 +38,16 @@
 				<section class="post">
 					<header class="major">
 						<span class="date">May 28, 2021</span>
-						<h1>Tập làm game</h1>
+						<h1>Tập làm game (phần 1)</h1>
 						<p>Code 1 số game cơ bản bằng Pygame</p>
 					</header>
-					<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
+					<div class="image main"><img src="images/pygame/pygame_ava.png" alt="" /></div>
 					<p>
 						Trong blog này mình sẽ hướng dẫn cách làm 1 game đơn giản bằng Pygame. Pygame bao gồm đồ họa 
 						máy tính và thư viện âm thanh được thiết kế để sử dụng với Python nên trước khi bắt đầu các 
-						bạn nên bắt học Python cơ bản trước.  
-					</p>
-					
+						bạn nên bắt học Python cơ bản trước.
+						Ở trong phần 1 mình sẽ hướng dẫn các bạn cách tạo 1 màn hình trò chơi và "dán" các hình ảnh lên đấy.
+					</p>		
 						<h3>1. Chuẩn bị</h3>
 						<p>
 							Trước khi bắt đầu vào code các bạn cần cài python cũng như pygame.
@@ -84,7 +84,8 @@ pygame.init()
 pygame.mixer.init()</code></pre>
 						<p>
 							Kế tiếp ta khởi tạo màn hình chương trình "screen" với kích thước \(width \times height\) với 
-							\(width\) là chiều rộng màn hình còn \(height\) là chiều dài theo pixel. 
+							\(width\) là chiều rộng màn hình còn \(height\) là chiều dài theo pixel (ở đây thì màn hình có 
+							kích thước \(1218 \times 630\)).  
 						</p>
 						<pre><code class="python">width, height = 1218, 630
 screen=pygame.display.set_mode((width, height))</code></pre>
@@ -106,12 +107,17 @@ lose_screen = pygame.image.load("D:/Python/shooting mole/resources/images/gameov
 lose_screen = pygame.transform.scale(lose_screen,(width,height))
 win_screen = pygame.image.load("D:/Python/shooting mole/resources/images/youwin.png")
 win_screen = pygame.transform.scale(win_screen,(width,height))</code></pre>
+						<div class="center_image"><img src="images/pygame/dude.png" alt="">Con thỏ người chơi điều khiển</div>
+						<div class="center_image"><img src="images/pygame/castle.png" alt="">Kho cà rốt cần bảo vệ</div>
+						<div class="center_image"><img src="images/pygame/badguy.png" alt="">Con chuột chũi phá hoại</div>
+						<div class="center_image"><img src="images/pygame/bullet.png" alt="">Mũi tên diệt chuột</div>
 						<p>
 							Sau khi chuẩn bị ảnh cho game xong xuôi, ta sẽ chuẩn bị phần âm thanh. Mình sẽ sử dụng 3 file "explode", 
 							"enemy", "shoot" lần lượt là âm thanh của kho cà rốt khi bị chuột tấn công, chuột khi bị dính tên và tiếng
 							bắn tên. Sau khi khởi tạo âm thanh thì ta cần chỉnh âm lượng cho phù hợp. Mình để là "0.1" nhưng các bạn 
 							có thể để cao hơn nếu muốn to hơn (0 là không có tiếng).
 						</p>
+						
 						<pre><code class="python"># 3.1 - Load audio
 hit = pygame.mixer.Sound("D:/Python/shooting mole/resources/audio/explode.wav")
 enemy = pygame.mixer.Sound("D:/Python/shooting mole/resources/audio/enemy.wav")
@@ -120,6 +126,72 @@ hit.set_volume(0.1)
 enemy.set_volume(0.1)
 shoot.set_volume(0.1)</code></pre>
 						
+						<p>
+							Ngoài những âm thanh hiệu ứng ra thì nhạc nền cũng là 1 yếu tố không thể thiếu với 1 trò 
+							chơi. Mình sử dụng file "moonlight" làm nhạc nền và đặt âm lượng "0.5". Còn dòng lệnh
+							thứ 2 nhằm lặp lại 1 đoạn nhạc nhiều lần với số lần lặp là "-1" (ở đây có nghĩa là vô hạn)
+							và bắt đầu tại thời điểm "0.0" (bắt đầu ngay lúc game chạy).
+						</p>
+						<pre><code class="python">pygame.mixer.music.load('D:/Python/shooting mole/resources/audio/moonlight.wav')
+pygame.mixer.music.play(-1, 0.0)
+pygame.mixer.music.set_volume(0.5)</code></pre>
+						<h4>3.3. Vòng lặp game</h4>
+						<p>
+							Với những người đã từng chơi game, chắc hẳn các bạn không lạ gì với thuật ngữ FPS (frame per second
+							chứ không phải first person shooter nhé). Khi 1 trò chơi hoạt động, nó sẽ không thay đổi theo từng
+							mili giây như trong đời thực mà nó sẽ thay đổi thay từng khung hình (frame). Tức là khi ta thao tác 
+							trong trò chơi, các mệnh lệnh sẽ không được thực hiện tức thời mà sẽ máy tính sẽ quét các mệnh lệnh
+							mỗi 1 khoảng thời gian nhất định rồi thực hiện chúng. Sở dĩ ta không nhận ra sự ngắt quãng là do 
+							số frame trong 1 giây nhiều hơn những gì mắt tiếp nhận được nên ta không thấy bất thường.
+						</p>
+						<p>
+							Để trò chơi hoạt động, ta cần 1 vòng lặp game. Đây chỉ đơn giản là 1 vòng lặp while thông thường
+							và khi vòng lặp này kết thúc, trò chơi cũng kết thúc. 
+						</p>
+						<pre><code class="python">running=1
+while running:
+# do something ...</code></pre>
+						<h4>3.4. Màn hình nền</h4>
+						<p>
+							Giờ ta sẽ bắt đầu "vẽ" màn hình trò chơi. Hiện tại màn hình của ta đang đen xì và để vẽ các hình ảnh
+							mình vừa load ở trên. Hàm background, đúng như tên gọi của nó, có nhiệm vụ vẽ màn hình nền cho 
+							trò chơi. Trong quá trình làm 1 trò chơi mình khuyến khích các bạn chia chương trình của mình 
+							thành nhiều hàm với mỗi hàm đảm nhận 1 nhiệm vụ khác nhau. Điều này giúp code của bạn không bị
+							gộp lại thành 1 cục rất khó nhìn và khó debug. Hình nền mình chọn ở đây là cỏ (grass):
+						</p>
+						<div class="center_image"><img src="images/pygame/grass.png" alt="" /></div>
+						<p>
+							Cái ảnh "grass" ở trên có kích thước \(100\times100\) pixel trong khi màn hình của chúng ta lại có 
+							kích thước tới \(1218 \times 630\) nên ta cần phải tìm cách lấp đầy màn hình bằng ảnh trên. Ta có thể 
+							dùng câu lệnh "pygame.transform.scale" để phóng to ảnh lên bằng với màn hình như cách mình đã làm với 
+							2 ảnh "win_screen" và "lose_screen" ở trên. Tuy nhiên, việc phóng to ảnh sẽ làm nó bị mờ đi và không còn 
+							nét nữa. Vì vậy, ta sẽ dùng cách đơn giản hơn đó chính là vẽ ảnh "grass" khắp màn hình sao cho không 
+							còn chỗ trống. 
+						</p>
+						<div class="image main"><img src="images/pygame/empty_background.png" alt="" /><figcaption>Vẽ ảnh "grass" khắp màn hình</figcaption></div>
+						<p>
+							Để vẽ lên màn hình ta cần câu lệnh "blit". Câu lệnh này nhận hình ảnh và vị trí vẽ hình ảnh đó. Vị trí
+							này gồm 2 số \((a,b)\) với \(a\) là khoảng cách của vị trí đó tới lề trái của màn hình còn \(b\) là 
+							khoảng cách tới lề trên (nóc màn hình). Như ở trong trường hợp này hình ảnh ở đây là "grass" còn 
+							vị trí là \((x*100,y*100)\). Ở dòng đầu tiên mình dùng câu lệnh fill để tô toàn màn hình màu đen 
+							(màu đen có rgb là 0). Câu lệnh này sẽ xóa toàn bộ mọi thứ trên màn hình và thay màu đen. Điều này 
+							giúp ta dễ dàng thay thế frame cũ và vẽ 1 frame mới hơn. 2 hàm "get_width()" và "get_height" sẽ trả về chiều dài và rộng của ảnh.
+							Về cơ bản, hàm background sẽ vẽ "grass" ở tất cả các tọa độ \((a,b),a \vdots 100, b \vdots 100\). Do 
+							"grass" có kích thước \(100\times100\) nên trên thực tế tất cả các pixel trên màn hình đều được lấp đầy.
+						</p>
+						<pre><code>def background():
+	screen.fill(0)
+	for x in range(width//grass.get_width()+1):
+		for y in range(height//grass.get_height()+1):
+			screen.blit(grass,(x*100,y*100))</code></pre>
+						<p>
+							Cuối cùng để màn hình được cập nhật các bạn dùng câu lệnh "pygame.display.flip()". 
+						</p>
+						<h3>4. Tổng kết</h3>
+						<p>
+							Vậy là sau phần 1, các bạn đã có thể chạy 1 chương trình pygame cơ bản và vẽ hình nền cho nó. 
+							Ở buổi sau mình sẽ tiếp tục hướng dẫn cách vẽ các ảnh nhân vật và cách nhận input từ người chơi.
+						</p>
 				</section>
 			</div>
 
