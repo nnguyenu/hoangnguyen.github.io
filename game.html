@@ -1,48 +1,127 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Generic Page - Massively by HTML5 UP</title>
+		<title>Game</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<script src="https://kit.fontawesome.com/8c4d18466e.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="/path/to/styles/default.css">
+		<script src="/path/to/highlight.min.js"></script>
+		<script>hljs.highlightAll();</script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
-			<div id="wrapper">
-				<!-- Header -->
-					<header id="header">
-						
+		<div id="wrapper">
+			<!-- Header -->
+			<header id="header">
+				
+			</header>
+			<!-- Nav -->
+			<nav id="nav">
+				<ul class="links">
+					<li><a href="index.html">Main page</a></li>
+					<li><a href="About_me.html">About me</a></li>
+					<li class="active"><a href="#">Post</a></li>
+				</ul>
+				<ul class="icons">
+					<li><a href="https://www.facebook.com/VuHoangNguyennnnn" class="fab fa-facebook" style='font-size:26px'></a></li>		
+					<li><a href="https://github.com/nnguyenu" class="fab fa-github" style='font-size:26px'></a></li>
+					<li><a href="mailto:vuhoangnguyen7t1@gmail.com" class="fab fa-google" style='font-size:26px'></a></li>
+				</ul>
+			</nav>
+			<!-- Main -->
+			<div id="main">
+			<!-- Post -->
+				<section class="post">
+					<header class="major">
+						<span class="date">May 28, 2021</span>
+						<h1>Tập làm game</h1>
+						<p>Code 1 số game cơ bản bằng Pygame</p>
 					</header>
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="index.html">Main page</a></li>
-							<li><a href="About_me.html">About me</a></li>
-							<li class="active"><a href="#">Post</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.facebook.com/VuHoangNguyennnnn" class="fab fa-facebook" style='font-size:26px'></a></li>		
-							<li><a href="https://github.com/nnguyenu" class="fab fa-github" style='font-size:26px'></a></li>
-							<li><a href="mailto:vuhoangnguyen7t1@gmail.com" class="fab fa-google" style='font-size:26px'></a></li>
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-						<!-- Post -->
-						<section class="post">
-							<header class="major">
-								<span class="date">Date</span>
-								<h1>Title</h1>
-								<p>Description</p>
-							</header>
-							<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
-							<p>Text1</p>
-							<p>Text2</p>
-						</section>
-					</div>
+					<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
+					<p>
+						Trong blog này mình sẽ hướng dẫn cách làm 1 game đơn giản bằng Pygame. Pygame bao gồm đồ họa 
+						máy tính và thư viện âm thanh được thiết kế để sử dụng với Python nên trước khi bắt đầu các 
+						bạn nên bắt học Python cơ bản trước.  
+					</p>
+					
+						<h3>1. Chuẩn bị</h3>
+						<p>
+							Trước khi bắt đầu vào code các bạn cần cài python cũng như pygame.
+							Link download python: <a href="https://www.python.org/downloads/">Link</a><br>
+							Các bạn có thể tải bất kì phiên bản nào của Python nhưng mình khuyến khích sử dụng phiên bản 
+							mới nhất hoặc dùng phiên bản mình sử dụng trong cái tutorial này là 3.8.2<br>
+							Link download pygame: <a href="https://www.pygame.org/download.shtml">Link</a><br>
+							Về ide thì các bạn có thể dùng pycharm, IDLE, Sublime Text tùy thích còn mình thấy vscode ổn nhất.<br>
+							Đây là link resources chứa tất cả các hình ảnh và âm thanh mình sẽ sử dụng: 
+							<a href="https://drive.google.com/drive/folders/1kvXri-xls4TvO2zwbFJvWQIcfo9djUyM?usp=sharing">
+							Link</a>
+						</p>
+						<h3>2. Ý tưởng trò chơi</h3>
+						<p>
+							Chúng ta sẽ viết 1 trò chơi đơn giản về 1 con thỏ bảo vệ kho cà rốt của mình khỏi những con chuột chũi. 
+							Người chơi sẽ điều khiển con thỏ ở góc nhìn trên cao và có thể di chuyển và bắn tên vào những con chuột 
+							để tiêu diệt chúng. Những con chuột chũi sẽ xuất hiện ở bên phải màn hình và di chuyển tới kho cà rốt ở 
+							bên trái. Nếu có quá nhiều chuột chạm vào kho cà rốt người chơi sẽ thua. Ngược lại, người chơi sẽ giành 
+							chiến thắng khi tiêu diệt được 1 số lượng chuột nhất định làm chúng sợ hãi bỏ chạy hoặc sống sót đến 
+							buổi sáng khi chuột vào hang.
+						</p>
+						<h3>3. Bắt đầu code</h3>
+						<h4>3.1. Khởi tạo chương trình và màn hình</h4>
+						<p>
+							Đầu tiên ta cần thêm thư viện pygame vào chương trình sử dụng 2 dòng lệnh đầu. Ngoài ra trong quá
+							trình làm mình cũng sẽ sử dụng 1 số câu lệnh thuộc thư viện "math" và "random" nên mình cũng import
+							chúng. 2 dòng lệnh 5, 6 nhằm khởi tạo pygame.
+						</p>
+						<pre><code class="python">import pygame
+from pygame.locals import *
+import math
+import random
+pygame.init()
+pygame.mixer.init()</code></pre>
+						<p>
+							Kế tiếp ta khởi tạo màn hình chương trình "screen" với kích thước \(width \times height\) với 
+							\(width\) là chiều rộng màn hình còn \(height\) là chiều dài theo pixel. 
+						</p>
+						<pre><code class="python">width, height = 1218, 630
+screen=pygame.display.set_mode((width, height))</code></pre>
+						<h4>3.2. Khởi tạo hình ảnh và âm thanh</h4>
+						<p>
+							Giờ ta sẽ dùng hình ảnh trong file "resources" để sử dụng. Để làm được điều này mình sử dụng
+							câu lệnh "pygame.image.load" nhằm load ảnh từ địa chỉ chỉ định. Ở đây mình lấy các hình ảnh png từ
+							file resources thuộc ổ D nhưng khi các bạn thực hành thì phải chỉnh thành địa chỉ trên máy mình.<br>
+							Ngoài ra các bạn có thể thấy mình sử dụng thêm 1 câu lệnh nữa là "pygame.transform.scale". Câu lệnh
+							này sẽ phóng to thu nhỏ ảnh theo kích thước chỉ định. Trong trường hợp này 2 ảnh "lose_screen" và "win_screen"
+							được phóng to ra và có kích thước \(width \times height\) (kích thước màn hình game). 
+						</p>
+						<pre><code class="python"># 3 - Load images
+grass = pygame.image.load("D:/Python/shooting mole/resources/images/grass.png")
+castle = pygame.image.load("D:/Python/shooting mole/resources/images/castle.png")
+healthbar = pygame.image.load("D:/Python/shooting mole/resources/images/healthbar.png")
+health = pygame.image.load("D:/Python/shooting mole/resources/images/health.png")
+lose_screen = pygame.image.load("D:/Python/shooting mole/resources/images/gameover.png")
+lose_screen = pygame.transform.scale(lose_screen,(width,height))
+win_screen = pygame.image.load("D:/Python/shooting mole/resources/images/youwin.png")
+win_screen = pygame.transform.scale(win_screen,(width,height))</code></pre>
+						<p>
+							Sau khi chuẩn bị ảnh cho game xong xuôi, ta sẽ chuẩn bị phần âm thanh. Mình sẽ sử dụng 3 file "explode", 
+							"enemy", "shoot" lần lượt là âm thanh của kho cà rốt khi bị chuột tấn công, chuột khi bị dính tên và tiếng
+							bắn tên. Sau khi khởi tạo âm thanh thì ta cần chỉnh âm lượng cho phù hợp. Mình để là "0.1" nhưng các bạn 
+							có thể để cao hơn nếu muốn to hơn (0 là không có tiếng).
+						</p>
+						<pre><code class="python"># 3.1 - Load audio
+hit = pygame.mixer.Sound("D:/Python/shooting mole/resources/audio/explode.wav")
+enemy = pygame.mixer.Sound("D:/Python/shooting mole/resources/audio/enemy.wav")
+shoot = pygame.mixer.Sound("D:/Python/shooting mole/resources/audio/shoot.wav")
+hit.set_volume(0.1)
+enemy.set_volume(0.1)
+shoot.set_volume(0.1)</code></pre>
+						
+				</section>
+			</div>
 
 				<!-- Footer -->
 					<footer id="footer">
