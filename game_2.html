@@ -54,8 +54,9 @@
                                 vào 1 khung nền lớn hơn. Tất cả những ảnh ta khởi tạo trong phần 1 đều có thể được coi
                                 là 1 sprite và sẽ được "dán/in" (blit) lên màn hình để tạo ra đồ họa của trò chơi. Trong pygame 
                                 ta cũng sẽ sử dụng 1 "class" tên "sprite" nhằm quản lí các nhân vật trong trò chơi như con thỏ và
-                                chuột chũi. Ta bắt đầu bằng việc khởi tạo người chơi (con thỏ):
+                                chuột chũi. Ta bắt đầu bằng việc khởi tạo người chơi (con thỏ).
                             </p>
+							<h4>1.1. Player</h4>
                             <pre><code class="python">class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player,self).__init__()
@@ -63,6 +64,12 @@
         self.rect = self.surf.get_rect(center=(100,100))
         self.speed = 10
         self.angle = 0</code></pre>
+                            <p>
+                                Việc đầu tiên ta cần làm khi tạo 1 class đối tượng (ở đây đối tượng là Player) là tạo 1 hàm khởi
+                                tạo (init). Ở trong hàm "__init__" mình sẽ chọn surf của self tức Player là player_avatar tức con thỏ. Điều
+								này có nghĩa là khi hình ảnh của các đối tượng thuộc class Player sẽ là con thỏ.
+								Để hiểu được câu lệnh kế tiếp thì ta cần hiểu <i>rect</i> trong pygame là gì. 
+                            </p>
 						</section>
 					</div>
 
