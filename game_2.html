@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Generic Page - Massively by HTML5 UP</title>
+		<title>Game 2</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -52,9 +52,17 @@
                             <p>
                                 Trong đồ họa máy tính, sprite là một hình ảnh hai chiều hoặc hình ảnh động được kết hợp 
                                 vào 1 khung nền lớn hơn. Tất cả những ảnh ta khởi tạo trong phần 1 đều có thể được coi
-                                là 1 sprite và sẽ được "dán/in" (blit) lên màn hình để tạo ra đồ họa của trò chơi. Bản 
-                                thân  
+                                là 1 sprite và sẽ được "dán/in" (blit) lên màn hình để tạo ra đồ họa của trò chơi. Trong pygame 
+                                ta cũng sẽ sử dụng 1 "class" tên "sprite" nhằm quản lí các nhân vật trong trò chơi như con thỏ và
+                                chuột chũi. Ta bắt đầu bằng việc khởi tạo người chơi (con thỏ):
                             </p>
+                            <pre><code class="python">class Player(pygame.sprite.Sprite):
+                    def __init__(self):
+                        super(Player,self).__init__()
+                        self.surf = player_avatar
+                        self.rect = self.surf.get_rect(center=(100,100))
+                        self.speed = 10
+                        self.angle = 0</code></pre>
 						</section>
 					</div>
 
