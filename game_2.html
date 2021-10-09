@@ -135,10 +135,11 @@ playerpos = self.rect.center
 self.angle = math.atan2(position[1]-playerpos[1],position[0]-playerpos[0])
 self.surf = pygame.transform.rotate(player_avatar,360-to_deg(self.angle)) # change angle from rad to deg</code></pre>
 							<p>
-								Ở 2 dòng code đầu tiên ta sẽ lấy tạo độ của con trỏ chuột và con thỏ bằng 2 câu lệnh "pygame.mouse.get_pos()" và 
-								"self.rect.center". Sau đó góc con thỏ đang nhìn sẽ được tính bằng hàm "atan2" (hàm này sẽ trả về tan của thương
-								tham số đầu tiên với tham số thứ hai). "surf" của con thỏ sẽ được quay tương ứng với góc sao cho con thỏ quay 
-								người theo con trỏ chuột. Một chút lưu ý là do "self.angle" đơn vị là radian mà "pygame.transform.rotate" 
+								Ở dòng đầu tiên, ta sẽ lấy tọa độ của con trỏ bằng câu lệnh "pygame.mouse.get_pos()". Câu lệnh này sẽ trả về tọa 
+								độ \(x\) và \(y\) của chuột theo góc trên bên trái của màn hình. Còn ở dòng thứ 2 mình sẽ lấy tọa độ tâm của con
+								thỏ bằng "self.rect.center". Sau đó góc con thỏ đang nhìn sẽ được tính bằng hàm "atan2" (hàm này sẽ trả về 
+								tan của thương tham số đầu tiên với tham số thứ hai). "surf" của con thỏ sẽ được quay tương ứng với góc sao cho 
+								con thỏ quay người theo con trỏ chuột. Một chút lưu ý là do "self.angle" đơn vị là radian mà "pygame.transform.rotate" 
 								nhận tham số theo đơn vị độ nên ta cần viết 1 hàm "to_deg" nhằm chuyển radian về độ. Để chuyển đổi đơn vị ta sẽ
 								dùng công thức $$ degrees = radians * 180 / 2 \pi \approx radians * 57.29 $$
 							</p>
