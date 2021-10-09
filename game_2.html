@@ -124,8 +124,9 @@
 	self.rect.top = max(self.rect.top,0)
 	self.rect.bottom = min(self.rect.bottom, height)</code></pre>
 							<p>
-								Hàm "update" này nhận "press" làm tham số trong đó "press" là 1 mảng bool nhằm thể hiện nút thứ /(i/) có được bấm xuống
-								hay không (nếu có thì /(press[i] == True/)).
+								Hàm "update" này nhận "press" làm tham số trong đó "press" là 1 mảng bool nhằm thể hiện nút thứ \(i\) có được bấm xuống
+								hay không (nếu có thì \(press[i] == True\)). Khi đó ta chỉ cần kiểm xem các nút di chuyển như WASD và nút mũi tên có 
+								được bấm hay không và di chuyển con thỏ tương ứng.
 							</p>
 						</section>
 					</div>
