@@ -91,32 +91,38 @@
 								là nhận input của người chơi. Ta sẽ tạo hàm "take_input" để sử lí việc này.  
 							</p>
 							<pre><code class="python">def take_input():
-	global reload_until, reload_time
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit() 
-			exit(0)
-		if event.type == add_enemy:
-			new_badguy = Badguy()
-			enemies.add(new_badguy)
-			all_sprites.add(new_badguy)      
-		if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # left click
-			if timer.get() < reload_until:
-				continue
-			reload_until = timer.get() + reload_time
-			new_arrow = Arrow()
-			arrows.add(new_arrow)
-			all_sprites.add(new_arrow)
-			acc[0]+=1
-			shoot.play()
+			exit(0)     
 		if event.type == pygame.KEYDOWN:    
 			if event.key == K_ESCAPE:
 				pygame.quit()
 				exit(0)</code></pre>
 							<p>
-								Đầu tiên ta cần xét tình Người chơi sẽ sử dụng 4 phím WASD và 4 phím mũi tên để di chuyển cũng 
-								như bấm chuột phải để bắn tên.
+								Đầu tiên ta tạo phím tắt kết thúc trò chơi. Ở dòng thứ 2 ta sẽ duyệt qua các sự kiện (event) trong "pygame.event.get".
+								Các sự kiện mà ta đang nhắc đến ở đây chính là việc người chơi bấm phím nào đó trên bàn phím (pygame.KEYDOWN) hay
+								bấm nút X exit của trò chơi (pygame.QUIT). Vì vậy ta sẽ kiểm tra xem loại event tức event.type có phải 2 loại 
+								sự kiện đó không, với pygame.KEYDOWN ta sẽ kiểm tra xem liệu nút được bấm có phải nút escape hay không (K_ESCAPE).
+								Để kết thúc chương trình ta sử dụng 2 câu lệnh "pygame.quit()" và "exit(0)".
 							</p>
+							<p>
+								Kế tiếp ngoài việc thoát game, người chơi cũng sẽ cần điều khiển nhân vật con thỏ của mình. Để làm được điều này
+								ta sẽ thêm hàm "update" trong class Player.
+							</p>
+							<pre><code class="python">def update(self,press):
+	if press[K_UP] or press[K_w]:
+		self.rect.move_ip(0, -self.speed)
+	if press[K_DOWN] or press[K_s]:
+		self.rect.move_ip(0, self.speed)
+	if press[K_LEFT] or press[K_a]:
+		self.rect.move_ip(-self.speed, 0)
+	if press[K_RIGHT] or press[K_d]:
+		self.rect.move_ip(self.speed, 0)
+	self.rect.left = max(self.rect.left, 0)
+	self.rect.right = min(self.rect.right, width)
+	self.rect.top = max(self.rect.top,0)
+	self.rect.bottom = min(self.rect.bottom, height)</code></pre>
 						</section>
 					</div>
 
