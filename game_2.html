@@ -85,7 +85,38 @@
 								đó "speed" là tốc độ của con thỏ còn "angle" là hướng mặt của con thỏ hiện tại (hướng mặt dựa theo
 								vị trí con trỏ chuột hiện tại).
 							</p>
-							<h3>3. </h3>
+							<h3>3. Nhận input</h3>
+							<p>
+								Sau khi khởi tạo nhân vật thì ta sẽ đến 1 trong những phần quan trọng nhất của trò chơi đó chính
+								là nhận input của người chơi. Ta sẽ tạo hàm "take_input" để sử lí việc này.  
+							</p>
+							<pre><code class="python">def take_input():
+	global reload_until, reload_time
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			pygame.quit() 
+			exit(0)
+		if event.type == add_enemy:
+			new_badguy = Badguy()
+			enemies.add(new_badguy)
+			all_sprites.add(new_badguy)      
+		if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # left click
+			if timer.get() < reload_until:
+				continue
+			reload_until = timer.get() + reload_time
+			new_arrow = Arrow()
+			arrows.add(new_arrow)
+			all_sprites.add(new_arrow)
+			acc[0]+=1
+			shoot.play()
+		if event.type == pygame.KEYDOWN:    
+			if event.key == K_ESCAPE:
+				pygame.quit()
+				exit(0)</code></pre>
+							<p>
+								Đầu tiên ta cần xét tình Người chơi sẽ sử dụng 4 phím WASD và 4 phím mũi tên để di chuyển cũng 
+								như bấm chuột phải để bắn tên.
+							</p>
 						</section>
 					</div>
 
