@@ -103,7 +103,7 @@
 								Đầu tiên ta tạo phím tắt kết thúc trò chơi. Ở dòng thứ 2 ta sẽ duyệt qua các sự kiện (event) trong "pygame.event.get".
 								Các sự kiện mà ta đang nhắc đến ở đây chính là việc người chơi bấm phím nào đó trên bàn phím (pygame.KEYDOWN) hay
 								bấm nút X exit của trò chơi (pygame.QUIT). Vì vậy ta sẽ kiểm tra xem loại event tức event.type có phải 2 loại 
-								sự kiện đó không, với pygame.KEYDOWN ta sẽ kiểm tra xem liệu nút được bấm có phải nút escape hay không (K_ESCAPE).
+								sự kiện đó không, với "pygame.KEYDOWN" ta sẽ kiểm tra xem liệu nút được bấm có phải nút escape hay không (K_ESCAPE).
 								Để kết thúc chương trình ta sử dụng 2 câu lệnh "pygame.quit()" và "exit(0)".
 							</p>
 							<p>
@@ -123,6 +123,10 @@
 	self.rect.right = min(self.rect.right, width)
 	self.rect.top = max(self.rect.top,0)
 	self.rect.bottom = min(self.rect.bottom, height)</code></pre>
+							<p>
+								Hàm "update" này nhận "press" làm tham số trong đó "press" là 1 mảng bool nhằm thể hiện nút thứ /(i/) có được bấm xuống
+								hay không (nếu có thì /(press[i] == True/)).
+							</p>
 						</section>
 					</div>
 
