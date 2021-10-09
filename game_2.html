@@ -126,7 +126,20 @@
 							<p>
 								Hàm "update" này nhận "press" làm tham số trong đó "press" là 1 mảng bool nhằm thể hiện nút thứ \(i\) có được bấm xuống
 								hay không (nếu có thì \(press[i] == True\)). Khi đó ta chỉ cần kiểm xem các nút di chuyển như WASD và nút mũi tên có 
-								được bấm hay không và di chuyển con thỏ tương ứng.
+								được bấm hay không và di chuyển con thỏ tương ứng. Ngoài ra để tránh trường hợp con thỏ đi ra ngoài màn hình thì ta 
+								cần giới hạn tọa độ của con thỏ sao cho nó luôn không âm và không vượt quá kích thước màn hình. Ngoài di chuyển ra thì 
+								con thỏ cũng cần phải quay mặt theo con trỏ chuột. 
+							</p>
+							<pre><code class="python">position = pygame.mouse.get_pos()
+playerpos = self.rect.center
+self.angle = math.atan2(position[1]-playerpos[1],position[0]-playerpos[0])
+self.surf = pygame.transform.rotate(player_avatar,360-to_deg(self.angle)) # change angle from rad to deg</code></pre>
+							<p>
+								Ở 2 dòng code đầu tiên ta sẽ lấy tạo độ của con trỏ chuột và con thỏ bằng 2 câu lệnh "pygame.mouse.get_pos()" và 
+								"self.rect.center". Sau đó góc con thỏ đang nhìn sẽ được tính bằng hàm "atan2" (hàm này sẽ trả về tan của thương
+								tham số đầu tiên với tham số thứ hai). "surf" của con thỏ sẽ được quay tương ứng với góc sao cho con thỏ quay 
+								người theo con trỏ chuột. Một chút lưu ý là do "self.angle" đơn vị là radian mà "pygame.transform.rotate" 
+								nhận tham số theo đơn vị độ nên ta cần viết 1 hàm "to_deg" nhằm chuyển radian về độ.
 							</p>
 						</section>
 					</div>
