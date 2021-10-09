@@ -139,7 +139,8 @@ self.surf = pygame.transform.rotate(player_avatar,360-to_deg(self.angle)) # chan
 								"self.rect.center". Sau đó góc con thỏ đang nhìn sẽ được tính bằng hàm "atan2" (hàm này sẽ trả về tan của thương
 								tham số đầu tiên với tham số thứ hai). "surf" của con thỏ sẽ được quay tương ứng với góc sao cho con thỏ quay 
 								người theo con trỏ chuột. Một chút lưu ý là do "self.angle" đơn vị là radian mà "pygame.transform.rotate" 
-								nhận tham số theo đơn vị độ nên ta cần viết 1 hàm "to_deg" nhằm chuyển radian về độ.
+								nhận tham số theo đơn vị độ nên ta cần viết 1 hàm "to_deg" nhằm chuyển radian về độ. Để chuyển đổi đơn vị ta sẽ
+								dùng công thức $$ degrees = radians * 180 / 2 \pi $$
 							</p>
 							<pre><code class="python">def to_deg(x):
 	return x*57.29</code></pre>
