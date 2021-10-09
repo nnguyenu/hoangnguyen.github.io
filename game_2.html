@@ -141,6 +141,16 @@ self.surf = pygame.transform.rotate(player_avatar,360-to_deg(self.angle)) # chan
 								người theo con trỏ chuột. Một chút lưu ý là do "self.angle" đơn vị là radian mà "pygame.transform.rotate" 
 								nhận tham số theo đơn vị độ nên ta cần viết 1 hàm "to_deg" nhằm chuyển radian về độ.
 							</p>
+							<pre><code class="python">def to_deg(x):
+	return x*57.29</code></pre>
+							<p>
+								Giờ sau khi hoàn thiện class Player ta chỉ cần tạo nhân vật cũng như tạo hàm "update" để cập nhật vị trí và
+								hướng nhìn của con thỏ. Hàm này còn có thể dùng để cập nhật các con chuột chũi cũng như mũi tên được bắn ra. 
+							</p>
+							<pre><code class="python">p = Player()</code></pre>	
+							<pre><code class="python">def update():
+	press = pygame.key.get_pressed()
+	p.update(press)</code></pre>
 						</section>
 					</div>
 
