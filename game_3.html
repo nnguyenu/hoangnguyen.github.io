@@ -91,8 +91,17 @@
                                 với 2 chức năng chính. <br>
                                 1. get: trả về thời gian trên đồng hồ hiện tại<br>
                                 2. reset: đặt lại thời gian trên đồng hồ về 0<br>
-                                
+                                Việc tạo 1 class riêng sẽ giúp ta chỉ cần gọi ".get" và ".reset" thay vì phải sử dụng câu 
+                                lệnh trả về thời gian hiện tại (pygame.time.get_ticks()) liên tục.
                             </p>
+                            <pre><code class="python">class stop_watch:
+                    def __init__(self):
+                        self.init_time = pygame.time.get_ticks()
+                    def get(self):
+                        return pygame.time.get_ticks()-self.init_time
+                    def reset(self):
+                        self.init_time = pygame.time.get_ticks()</code></pre>
+
 						</section>
 					</div>
 
