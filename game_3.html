@@ -95,13 +95,22 @@
                                 lệnh trả về thời gian hiện tại (pygame.time.get_ticks()) liên tục.
                             </p>
                             <pre><code class="python">class stop_watch:
-                    def __init__(self):
-                        self.init_time = pygame.time.get_ticks()
-                    def get(self):
-                        return pygame.time.get_ticks()-self.init_time
-                    def reset(self):
-                        self.init_time = pygame.time.get_ticks()</code></pre>
-
+    def __init__(self):
+        self.init_time = pygame.time.get_ticks()
+    def get(self):
+        return pygame.time.get_ticks()-self.init_time
+    def reset(self):
+        self.init_time = pygame.time.get_ticks()</code></pre>
+                            <p>
+                                Ban đầu khi ta khởi tạo thì ta sẽ lấy thời gian khi được khởi tạo (pygame.time.get_ticks()) 
+                                làm mốc. Khi đó để lấy được khoảng thời gian từ lần khởi tạo gần nhất ta chỉ cần lấy thời 
+                                gian hiện tại trừ đi thời gian gần nhất đồng hồ được khởi tạo. Để sử dụng stop_watch ta
+                                khai báo: 
+                            </p>
+                            <pre><code class="python">timer = stop_watch()</code></pre>
+                            <p>
+                                
+                            </p>
 						</section>
 					</div>
 
