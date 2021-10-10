@@ -63,7 +63,34 @@
                                 ra sẽ giúp ta mô phỏng được chuyển động của mũi tên trong mọi thời điểm. "surf" của mũi tên 
                                 cũng sẽ xoay 1 góc bằng góc được bắn ra và "rect" cũng chính là "rect" của hình mũi tên trong 
                                 resources tuy nhiên do ban đầu mũi tên được bắn ra từ con thỏ nên center của "rect" sẽ trùng 
-                                với center của "p.rect".
+                                với center của "p.rect". Mình cũng sẽ cho tốc độ của mũi tên là 15 (các bạn có thể tùy
+                                chỉnh nếu muốn tên chạy nhanh hay chậm). Sau khi hoàn thành hàm khởi tạo ban đầu ta cũng cần
+                                thêm 1 hàm cập nhật vị trí của mũi tên sau mỗi vòng lặp trò chơi (vòng lặp game mà mình đã
+                                nhắc tới ở phần 1).
+                            </p>
+                            <pre><code class="python">def update(self):
+    x = math.cos(self.angle)*self.speed
+    y = math.sin(self.angle)*self.speed
+    self.rect.move_ip(x,y)
+    if self.rect.top < 0 or self.rect.bottom > height or self.rect.left < 0 or self.rect.right > width:
+        self.kill()</code></pre>
+                            <p>
+                                Để cập nhật tọa độ \(x\) và \(y\) của 1 mũi tên thì ta chỉ cần lấy góc của mũi tên đó rồi 
+                                nhân với tốc độ là sẽ ra được quãng đường mũi tên di chuyển được theo \(x\) và \(y\). 
+                                Đồng thời nếu mũi tên chạy ra khỏi màn hình ta sẽ xóa mũi tên đó đi (self.kill()). 
+                            </p>
+                            <p>
+                                Đến đây thì ta đã hoàn thành class Arrow tuy nhiên việc có thể bắn ra tên 1 cách tức thời sẽ
+                                khiến người chơi có thể bắn ra tên liên tục khiến cho trò chơi trở nên quá dễ dàng cũng như
+                                thiếu tính thực tế. Vì vậy bây giờ mình sẽ hướng dẫn cách thêm thời gian rút cung (reload time)
+                                nhằm tạo 1 khoảng thời gian chờ giữa 2 lần bắn cung.
+                            </p>
+                            <h3>2. Rút cung</h3>
+                            <p>
+                                Để cho thuận tiện thì ta sẽ tạo 1 class tên "stop_watch" có chức năng như 1 đồng hồ bấm giờ 
+                                với 2 chức năng chính. 
+                                <ol>get: trả về thời gian trên đồng hồ hiện tại</ol>
+                                <ol>reset: đặt lại thời gian trên đồng hồ về 0</ol>
                             </p>
 						</section>
 					</div>
