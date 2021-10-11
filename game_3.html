@@ -109,8 +109,42 @@
                             </p>
                             <pre><code class="python">timer = stop_watch()</code></pre>
                             <p>
-                                
+                                Sau khi tạo ra 1 chiếc đồng hồ bấm giờ mình sẽ tiếp tục khởi tạo 2 biến "reload_time" và 
+								"reload_until" trong đó "reload_time" là thời gian rút cung tính theo mili giây còn 
+								"reload_until" là thời gian con thỏ có thể tiếp tục bắn cung. 
+							</p>
+							<pre><code class="python">reload_until = 0
+reload_time = 350</code></pre>
+							<p>
+								Do trong hầu hết các thời điểm trên màn hình sẽ có nhiều mũi tên đang bay cùng 1 lúc nên ta 
+								sẽ cần tìm cách nhóm các mũi tên thành 1 nhóm sử dụng "pygame.sprite.Group()". Mình sẽ dùng
+								2 group là "arrows" và "all_sprites" nhằm quản lí các mũi tên cũng như toàn bộ các sprites. 
+								Ưu điểm của việc nhóm các sprites là ta có thể duyệt qua từng sprites một cũng như cập nhật chúng 
+								chỉ với 1 vòng lặp for. 
                             </p>
+							<pre><code class="python">arrows = pygame.sprite.Group() 
+all_sprites = pygame.sprite.Group()</code></pre>
+							<p>
+								Giờ ta đã có thể thực hiện thao tác bắn cung:
+							</p>
+							<pre><code class="python">if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # left click
+	if timer.get() < reload_until:
+		continue
+	reload_until = timer.get() + reload_time
+	new_arrow = Arrow()
+	arrows.add(new_arrow)  
+	all_sprites.add(new_arrow)
+	acc[0]+=1
+	shoot.play()</code></pre>
+							<p>
+								Do việc click chuột phải cũng được tính là 1 sự kiện nên ta cũng sẽ kiểm tra thao tác này
+								ở trong vòng lặp sự kiện. Ta cũng sẽ kiểm tra xem liệu thời gian trên đồng hồ bấm giờ đã 
+								vượt qua thời gian có thể bắn cung chưa (nếu chưa thì không bắn tên). Trong trường hợp có
+								thể bắn tên, ta cập nhật thời gian có thể bắn mũi tên kế tiếp cũng như tạo ra mũi tên mới
+								(new_arrow) và thêm nó vào 2 nhóm "arrows" và "all_sprites". Do mình cũng sẽ đo độ chính 
+								xác (accuracy) của con thỏ nên mình 
+
+							</p>
 						</section>
 					</div>
 
