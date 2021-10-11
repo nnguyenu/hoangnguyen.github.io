@@ -132,7 +132,7 @@ all_sprites = pygame.sprite.Group()</code></pre>
 								1 con chuột chũi nào đó). Khi đó độ chính xác sẽ được tính bằng công thức: 
 								$$accuracy = \begin{cases}
 0, & \text{if $acc[0] = 0$} \\ 
-acc[1]/acc[0], & \text{if $acc[0] != 0$} \\
+acc[1]/acc[0], & \text{if $acc[0] \neq 0$} \\
 \end{cases} $$ 
 								Giờ ta đã có thể thực hiện thao tác bắn cung:
 							</p>
@@ -150,8 +150,35 @@ acc[1]/acc[0], & \text{if $acc[0] != 0$} \\
 								ở trong vòng lặp sự kiện. Ta cũng sẽ kiểm tra xem liệu thời gian trên đồng hồ bấm giờ đã 
 								vượt qua thời gian có thể bắn cung chưa (nếu chưa thì không bắn tên). Trong trường hợp có
 								thể bắn tên, ta cập nhật thời gian có thể bắn mũi tên kế tiếp cũng như tạo ra mũi tên mới
-								(new_arrow) và thêm nó vào 2 nhóm "arrows" và "all_sprites".  
-
+								(new_arrow) và thêm nó vào 2 nhóm "arrows" và "all_sprites". File âm thanh "shoot" cũng
+								được chạy nhằm thể hiện âm thanh bắn tên.
+							</p>
+							<h3>3. Chuột chũi</h3>
+							<p>
+								Tương tự với con thỏ và mũi tên, mình cũng sẽ tạo 1 sprite class cho chuột chũi có tên 
+								Badguy. 
+							</p>
+							<pre><code class="python">class Badguy(pygame.sprite.Sprite):
+	def __init__(self):
+		super(Badguy,self).__init__()
+		self.surf = badguyimg
+		self.rect = self.surf.get_rect()
+		self.rect.left = width+100
+		self.rect.top = random.randint(50,height-100)
+		self.speed = random.randint(5,8)
+	def update(self):
+		self.rect.move_ip(-self.speed,0)
+		if self.rect.right < 0:
+			self.kill()</code></pre>
+							<p>
+								Ở hàm khởi tạo, do các con chuột chũi sẽ bắt đầu chạy từ bên phải màn hình sang tổ 
+								của thỏ ở bên phải nên tọa độ \(x\) ban đầu của các con chuột sẽ nằm ngoài màn hình
+								tầm \(100\) pixel (tức \(x_{chuột}=width+100\)). Mình cũng sẽ cho tọa độ \(y\) của
+								chuột ngẫu nhiên sao cho tất cả các kho cà rốt đều có thể có chuột chạy tới. Tốc 
+								độ di chuyển cũng sẽ ngẫu nhiên từ 5 tới 8 pixel trên 1 khung hình nhằm tăng tính
+								thực tế cho trò chơi (chuột chũi nhỏ sẽ chạy nhanh hơn chuột chũi lớn). Sau đó ở 
+								hàm "update" ta chỉ cần giảm tọa độ \(x\) của các con chuột chũi đi cũng như loại 
+								bỏ các con chuột đã chạy ra ngoài màn hình là xong.
 							</p>
 						</section>
 					</div>
