@@ -111,7 +111,9 @@
                             <p>
                                 Sau khi tạo ra 1 chiếc đồng hồ bấm giờ mình sẽ tiếp tục khởi tạo 2 biến "reload_time" và 
 								"reload_until" trong đó "reload_time" là thời gian rút cung tính theo mili giây còn 
-								"reload_until" là thời gian con thỏ có thể tiếp tục bắn cung. 
+								"reload_until" là thời gian con thỏ có thể tiếp tục bắn cung. Ở đây mình đặt thời gian 
+								rút cung là 350 mili giây (0.35 giây) nhưng nếu các bạn muốn trò chơi dễ hơn khó hơn 
+								thì có thể giảm hoặc tăng nó lên.
 							</p>
 							<pre><code class="python">reload_until = 0
 reload_time = 350</code></pre>
@@ -125,6 +127,13 @@ reload_time = 350</code></pre>
 							<pre><code class="python">arrows = pygame.sprite.Group() 
 all_sprites = pygame.sprite.Group()</code></pre>
 							<p>
+								Do mình cũng muốn đo độ chính xác (accuracy) của con thỏ nên mình sẽ tạo mảng "arr" trong đó
+								\(arr[0]\) là tổng số mũi tên được bắn ra còn \(arr[1]\) là số mũi tên trúng đích (trúng
+								1 con chuột chũi nào đó). Khi đó độ chính xác sẽ được tính bằng công thức: 
+								$$\begin{cases}
+accuracy = 0 if acc[0] = 0 \\ 
+accuracy = acc[1]/acc[0] if acc[0] != 0 \\
+\end{cases} $$ 
 								Giờ ta đã có thể thực hiện thao tác bắn cung:
 							</p>
 							<pre><code class="python">if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # left click
@@ -141,8 +150,7 @@ all_sprites = pygame.sprite.Group()</code></pre>
 								ở trong vòng lặp sự kiện. Ta cũng sẽ kiểm tra xem liệu thời gian trên đồng hồ bấm giờ đã 
 								vượt qua thời gian có thể bắn cung chưa (nếu chưa thì không bắn tên). Trong trường hợp có
 								thể bắn tên, ta cập nhật thời gian có thể bắn mũi tên kế tiếp cũng như tạo ra mũi tên mới
-								(new_arrow) và thêm nó vào 2 nhóm "arrows" và "all_sprites". Do mình cũng sẽ đo độ chính 
-								xác (accuracy) của con thỏ nên mình 
+								(new_arrow) và thêm nó vào 2 nhóm "arrows" và "all_sprites".  
 
 							</p>
 						</section>
