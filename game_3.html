@@ -180,6 +180,34 @@ acc[1]/acc[0], & \text{if $acc[0] \neq 0$} \\
 								hàm "update" ta chỉ cần giảm tọa độ \(x\) của các con chuột chũi đi cũng như loại 
 								bỏ các con chuột đã chạy ra ngoài màn hình là xong.
 							</p>
+							<p>
+								Để có thể tạo ra 1 chuột chũi liên tục thì ta gọi 1 sự kiện có tên "add_enemy" 
+								với tác dụng đơn giản là tạo ra 1 con chuột chũi. Sở dĩ mình gọi đây là sự kiện vì mình
+								sẽ tạo ra nó cũng như kiểm tra xem sự kiện này có xảy ra không ở trong vòng lặp sự 
+								kiện. Trong pygame ngoài các sự kiện có sẵn như click chuột, bấm phím nút hay bấm 
+								nút X thoát ra ngoài thì ta cũng có thể tự tạo ra các sự kiện. Các sự kiện nhân tạo 
+								này là "pygame.USEREVENT".  
+							</p>
+							<pre><code class="python">badtimer = 500
+add_enemy = pygame.USEREVENT + 1
+pygame.time.set_timer(add_enemy, badtimer)</code></pre>
+							<p>
+								Ở dòng đầu tiên mình đặt thời gian tạo ra 1 chuột chũi là 500 mili giây (0.5 giây).
+								Sau đó mình khởi tạo sự kiện "add_enemy" là sự kiện nhân tạo đầu tiên và đặt thời  
+								gian nó xảy ra là mỗi 0.5 giây. Mình cũng sẽ tạo 1 sprite group của chuột chũi:
+							</p>
+							<pre><code class="python">enemies = pygame.sprite.Group()</code></pre>
+							<p>
+								Giờ ta chỉ cần kiểm tra xem "add_enemy" có xuất hiện không, nếu có thì tạo 1 con 
+								chuột chũi mới và cho nó vào 2 sprite group "enemies" và "all_sprites".
+							</p>
+							<pre><code class="python">if event.type == add_enemy:
+	new_badguy = Badguy()
+	enemies.add(new_badguy)
+	all_sprites.add(new_badguy)</code></pre>
+							<p>
+								
+							</p>
 						</section>
 					</div>
 
