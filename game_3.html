@@ -205,9 +205,30 @@ pygame.time.set_timer(add_enemy, badtimer)</code></pre>
 	new_badguy = Badguy()
 	enemies.add(new_badguy)
 	all_sprites.add(new_badguy)</code></pre>
+							<h3>4. Cập nhật sprites</h3>
 							<p>
-								
+								Để cập nhật vị trí của các mũi tên và chuột chũi sau mỗi khung hình, ta đơn giản 
+								là duyệt qua sprite group chứa chúng ("arrows" và "enemies") và gọi hàm "update". Sau đó ta duyệt qua toàn
+								bộ sprite và in lên màn hình.
 							</p>
+							<pre><code class="python">for i in enemies:
+	i.update()
+for i in arrows:
+	i.update()
+for i in all_sprites:
+	screen.blit(i.surf,i.rect)</code></pre>
+							<h3>5. Tổ thỏ</h3>
+							<p>
+								Sau khi vẽ các nhân vật lên màn hình, mình cũng sẽ vẽ các tổ thỏ. Các kho cà rốt 
+								này sẽ trải dài cách đều ở bên trái màn hình và mình sẽ tạo hàm "draw_screen" 
+								có nhiệm vụ vẽ hình nền lẫn tổ thỏ.
+							</p>
+							<pre><code class="python">def draw_screen():
+	background()
+	castle_height = castle.get_height()
+	for x in range((height-50)//castle_height):
+		screen.blit(castle,(0,50+x*castle_height))</code></pre>
+							
 						</section>
 					</div>
 

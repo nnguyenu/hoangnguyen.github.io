@@ -124,8 +124,7 @@ enemy = pygame.mixer.Sound("D:/Python/shooting mole/resources/audio/enemy.wav")
 shoot = pygame.mixer.Sound("D:/Python/shooting mole/resources/audio/shoot.wav")
 hit.set_volume(0.1)
 enemy.set_volume(0.1)
-shoot.set_volume(0.1)</code></pre>
-						
+shoot.set_volume(0.1)</code></pre>	
 						<p>
 							Ngoài những âm thanh hiệu ứng ra thì nhạc nền cũng là 1 yếu tố không thể thiếu với 1 trò 
 							chơi. Mình sử dụng file "moonlight" làm nhạc nền và đặt âm lượng "0.5". Còn dòng lệnh
@@ -178,8 +177,7 @@ while running:
 							giúp ta dễ dàng thay thế frame cũ và vẽ 1 frame mới hơn. 2 hàm "get_width()" và "get_height" sẽ trả về chiều dài và rộng của ảnh.
 							Về cơ bản, hàm background sẽ vẽ "grass" ở tất cả các tọa độ \((a,b),a \vdots 100, b \vdots 100\). Do 
 							"grass" có kích thước \(100\times100\) nên trên thực tế tất cả các pixel trên màn hình đều được lấp đầy.
-						</p>
-					
+						</p>	
 						<pre><code>def background():
 	screen.fill(0)
 	for x in range(width//grass.get_width()+1):
