@@ -130,9 +130,9 @@ all_sprites = pygame.sprite.Group()</code></pre>
 								Do mình cũng muốn đo độ chính xác (accuracy) của con thỏ nên mình sẽ tạo mảng "arr" trong đó
 								\(arr[0]\) là tổng số mũi tên được bắn ra còn \(arr[1]\) là số mũi tên trúng đích (trúng
 								1 con chuột chũi nào đó). Khi đó độ chính xác sẽ được tính bằng công thức: 
-								$$\begin{cases}
-accuracy = 0 if acc[0] = 0 \\ 
-accuracy = acc[1]/acc[0] if acc[0] != 0 \\
+								$$accuracy = \begin{cases}
+0 \text{if acc[0] = 0} \\ 
+acc[1]/acc[0] \text{if acc[0] != 0} \\
 \end{cases} $$ 
 								Giờ ta đã có thể thực hiện thao tác bắn cung:
 							</p>
